@@ -11,9 +11,9 @@ The package for the OS is the always preferred approach if possible.
 ## Usage
 
 ```sh
-$ cd $(mktemp --directory)
-$ curl --output PKGBUILD https://raw.githubusercontent.com/weilbith/pkgbuild-collection/master/<select-here>.PKGBUILD
-$ makepkg --syncdeps --install
+cd $(mktemp --directory)
+curl --output PKGBUILD https://raw.githubusercontent.com/weilbith/pkgbuild-collection/master/<select-here>.PKGBUILD
+makepkg --syncdeps --install
 ```
 
 ## Notes
