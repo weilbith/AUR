@@ -1,0 +1,30 @@
+_pkgname=tmux-thumbs
+pkgname=${_pkgname}-git
+pkgver=1
+pkgrel=1
+pkgdesc='A lightning fast version to copy pasting with vimium/vimperator like hints in TMux'
+arch=('any')
+url="https://github.com/fcsonline/tmux-thumbs"
+license=('MIT')
+makedepends=('git' 'rust' 'cargo')
+source=("git+https://github.com/fcsonline/tmux-thumbs.git")
+sha256sums=('SKIP')
+provides=('tmux-thumbs' 'thumbs')
+
+pkgver() {
+  cd "$srcdir/$_pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$_pkgname"
+  cargo build --release
+}
+
+package() {
+  cd "$_pkgname"
+  install -D --mode=664 LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+  install -D --mode=644 README.md "$pkgdir/usr/share/doc/$_pkgname/README.md"
+  mkdir --parents "$pkgdir/usr/share/tmux/plugins/$_pkgname"
+  cp --recursive ./tmux-thumbs.tmux ./tmux-thumbs.sh ./target/ "$pkgdir/usr/share/tmux/plugins/$_pkgname/"
+}

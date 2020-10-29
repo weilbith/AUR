@@ -30,6 +30,14 @@ standard. (see also [this issue](https://github.com/clvv/fasd/issues/128)).
 ### zinit-git
 
 There is no such package for [zinit](https://github.com/zdharma/zinit) so far,
-but none of the documented installation approaches of the tool are acceptable.
+but none of the documented installation approaches of the tool is acceptable.
 After having it installed, use the path `/usr/share/zsh/scripts/zinit/zinit.zsh`
 to source in your `zsh` setup.
+
+### tmux-thumbs-git
+
+The is no such package for
+[tmux-thumbs](https://github.com/fcsonline/tmux-thumbs) so far, but none of the
+documented installation approaches of the tool is acceptable. After having is
+installed, use `run-shell /usr/share/tmux/plugins/tmux-thumbs/tmux-thumbs.tmux`
+in your `tmux` setup.
