@@ -1,0 +1,16 @@
+#!/bin/bash
+
+id=$(xwininfo -int | sed -nre 's/^xwininfo: Window id: ([0-9]+) .*$/\1/p')
+information=$(xprop -id "$id")
+
+# Parameter
+title=$(sed -nre 's/^WM_NAME\(STRING\) = "(.*)"$/\1/p' <<<"$information")
+class=$(sed -nre 's/^WM_CLASS\(STRING\) = ".*", "(.*)"$/\1/p' <<<"$information")
+instance=$(sed -nre 's/^WM_CLASS\(STRING\) = "(.*)", ".*"$/\1/p' <<<"$information")
+role=$(sed -nre 's/^WM_WINDOW_ROLE\(STRING\) = "(.*)"$/\1/p' <<<"$information")
+workspace=$(sed -nre 's/^_NET_WM_DESKTOP\(CARDINAL\) = ([0-9]+)$/\1/p' <<<"$information")
+
+# Flags (mind space prefixes)
+floating=$(grep -q 'I3_FLOATING_WINDOW(CARDINAL) = 1' <<<"$information" && echo ' floating')
+
+echo "[id='$id' title='$title' class='$class' instance='$instance' window_role='$role' workspace='$workspace'$floating]"
