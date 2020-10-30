@@ -1,0 +1,30 @@
+# shellcheck disable=SC2034
+
+pkgname=i3-lock-git
+pkgrel=1
+pkgver=0
+pkgdesc="Wrapper for i3lock-color with custom settings"
+arch=('any')
+url="https://github.com/weilbith/AUR/i3-lock-git"
+license=('MIT')
+depends=('i3lock-color-git')
+makedepends=('git')
+source=("$pkgname::git+https://github.com/weilbith/AUR.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd $srcdir/$pkgname
+  local most_recent_timestamp=0
+
+  for file in $pkgname/*; do
+    local file_timestamp=$(git log -1 --date=short --pretty=%ct -- "$file")
+    ((file_timestamp > most_recent_timestamp)) && \
+      most_recent_timestamp=file_timestamp
+  done
+
+  echo "$most_recent_timestamp"
+}
+
+package() {
+  install -D --target-directory="$pkgdir/usr/bin/" "$srcdir/$pkgname/$pkgname/i3-lock"
+}
