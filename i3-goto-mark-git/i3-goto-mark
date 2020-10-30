@@ -1,0 +1,8 @@
+#!/bin/bash
+# shellcheck disable=SC2001
+
+raw_marks=$(i3-msg -t get_marks)
+marks_as_list=$(sed -e 's/","/\n/g' <<<"$raw_marks")
+stripped_marks=$(tr -d '[]"' <<<"$marks_as_list")
+selected_mark=$(dmenu -i -p 'Go to mark:' <<<"$stripped_marks")
+i3-msg "[con_mark=$selected_mark]" focus >/dev/null 2>&1 || true
