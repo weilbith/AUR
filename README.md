@@ -1,8 +1,9 @@
-# PKGBUILD Collection
+# Arch User Repository
 
 This is a small collection of diverse `PKGBUILD` files. They are used to build
 packages that can be installed to _ArchLinux_. They are just not worth to get
-published as an ArchLinux User Repository.
+published to the official AUR. Eventually it is not conform with the submission
+guidelines as well.
 
 The goal is to have everything on your computer managed as either an package of
 the OS or a plugin (if it is strongly related to a specific tool or

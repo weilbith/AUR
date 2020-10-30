@@ -10,6 +10,6 @@ After having it installed, use the following line in your `tmux` configuration:
 
 ```sh
 cd $(mktemp --directory)
-curl --remote-name https://raw.githubusercontent.com/weilbith/pkgbuild-collection/master/tmux-thumbs-git/PKGBUILD
+curl --remote-name https://raw.githubusercontent.com/weilbith/AUR/master/tmux-thumbs-git/PKGBUILD
 mkpkg --syncdeps --install
 ```

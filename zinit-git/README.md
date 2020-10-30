@@ -10,6 +10,6 @@ to source in your `zsh` setup.
 
 ```sh
 cd $(mktemp --directory)
-curl --remote-name https://raw.githubusercontent.com/weilbith/pkgbuild-collection/master/zinit-git/PKGBUILD
+curl --remote-name https://raw.githubusercontent.com/weilbith/AUR/master/zinit-git/PKGBUILD
 mkpkg --syncdeps --install
 ```

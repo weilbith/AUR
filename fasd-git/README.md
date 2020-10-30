@@ -11,6 +11,6 @@ standard. (see also [this issue](https://github.com/clvv/fasd/issues/128)).
 
 ```sh
 cd $(mktemp --directory)
-curl --remote-name https://raw.githubusercontent.com/weilbith/pkgbuild-collection/master/fasd-git/PKGBUILD
+curl --remote-name https://raw.githubusercontent.com/weilbith/AUR/master/fasd-git/PKGBUILD
 mkpkg --syncdeps --install
 ```
