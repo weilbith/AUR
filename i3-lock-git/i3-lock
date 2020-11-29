@@ -1,61 +1,57 @@
 #!/bin/bash
 
-# Colors
-BLUE_LIGHT='#5fd7ff'
-BLUE_MEDIUM='#00afd7'
-BLUE_DARK='#005f87'
-GREEN_LIGHT='#d7ff5f'
-RED_LIGHT='#ff005f'
-RED_DARK='#af0000'
+function getWallpaper() {
+  [[ -n "$1" ]] && echo "$1" && return
+  [[ -f "$WALLPAPER_IMAGE_FILE" ]] && echo "$WALLPAPER_IMAGE_FILE" && return
+}
 
-WALLPAPER=""
+function setNotificationsPaused() {
+  command -v dunstctl 2>/dev/null || return
+  dunstctl set-paused "$1"
+}
 
-# Try to parse argument as path for wallpaper image
-if [[ -z "$1" ]]; then
-  if [[ -f "$WALLPAPER_IMAGE_FILE" ]]; then
-    echo "Use default wallpaper ($WALLPAPER_IMAGE_FILE)"
-    WALLPAPER="$WALLPAPER_IMAGE_FILE"
-  else
-    echo "Missing wallpaper as first argument!"
-    exit 1
-  fi
-else
-  if [[ ! -f "$1" ]]; then
-    echo "Can't find given wallpaper!"
-    exit 1
-  else
-    WALLPAPER="$WALLPAPER_IMAGE_FILE"
-  fi
-fi
+function lockScreen() {
+  local wallpaper="$1"
 
-# Getting Started
-i3lock \
-  --nofork \
-  --image "$WALLPAPER" \
-  --tiling \
-  --ignore-empty-password \
-  --indicator \
-  --clock \
-  --keylayout=0 \
-  --layoutcolor=${BLUE_MEDIUM}ff \
-  --timestr="%H:%M" \
-  --timecolor=${BLUE_LIGHT}ff \
-  --datestr="%A, %d.%m.%Y" \
-  --datecolor=${BLUE_LIGHT}ff \
-  --radius=110 \
-  --ring-width=9 \
-  --line-uses-ring \
-  --ringcolor="${BLUE_DARK}ff" \
-  --insidecolor=${BLUE_DARK}22 \
-  --separatorcolor=${BLUE_LIGHT}ff \
-  --keyhlcolor=${BLUE_LIGHT}ff \
-  --bshlcolor=${RED_DARK}ff \
-  --veriftext="Correct...?" \
-  --verifcolor=${GREEN_LIGHT}ff \
-  --insidevercolor=${GREEN_LIGHT}22 \
-  --ringvercolor=${GREEN_LIGHT}ff \
-  --wrongtext="Nope!" \
-  --noinputtext="Empty" \
-  --insidewrongcolor=${RED_LIGHT}22 \
-  --ringwrongcolor=${RED_DARK}ff \
-  --wrongcolor=${RED_LIGHT}ff >>/tmp/testi.log 2>&1
+  local blue_light='#5fd7ff'
+  local blue_medium='#00afd7'
+  local blue_dark='#005f87'
+  local green_light='#d7ff5f'
+  local red_light='#ff005f'
+  local red_dark='#af0000'
+
+  i3lock \
+    --nofork \
+    --image "$wallpaper" \
+    --tiling \
+    --ignore-empty-password \
+    --indicator \
+    --clock \
+    --keylayout=0 \
+    --layoutcolor=${blue_medium}ff \
+    --timestr="%H:%M" \
+    --timecolor=${blue_light}ff \
+    --datestr="%A, %d.%m.%Y" \
+    --datecolor=${blue_light}ff \
+    --radius=110 \
+    --ring-width=9 \
+    --line-uses-ring \
+    --ringcolor="${blue_dark}ff" \
+    --insidecolor=${blue_dark}22 \
+    --separatorcolor=${blue_light}ff \
+    --keyhlcolor=${blue_light}ff \
+    --bshlcolor=${red_dark}ff \
+    --veriftext="Correct...?" \
+    --verifcolor=${green_light}ff \
+    --insidevercolor=${green_light}22 \
+    --ringvercolor=${green_light}ff \
+    --wrongtext="Nope!" \
+    --noinputtext="Empty" \
+    --insidewrongcolor=${red_light}22 \
+    --ringwrongcolor=${red_dark}ff \
+    --wrongcolor=${red_light}ff >>/tmp/testi.log 2>&1
+}
+
+setNotificationsPaused true
+lockScreen "$(getWallpaper "$1")"
+setNotificationsPaused false

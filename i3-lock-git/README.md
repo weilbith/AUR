@@ -7,6 +7,9 @@ configuration. The executable is named `i3-lock`.
 The to use wallpaper image file path can be either provided via
 the environment variable `WALLPAPER_IMAGE_FILE` or as first parameter to the
 command. The chosen colors follow the Blue Planet palette.
+Additionally, if `dunst` is used as notification handler, the notifications get
+paused while the screen is locked. Notifications that get send during this
+period will be shown when the screen become unlocked again.
 
 ## Installation
 
