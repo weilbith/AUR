@@ -2,7 +2,7 @@
 
 pkgname=i3-goto-mark-git
 pkgrel=1
-pkgver=0
+pkgver=1
 pkgdesc="Select a window to jump to in i3 via their marks."
 arch=('any')
 url="https://github.com/weilbith/AUR/i3-goto-mark-git"
@@ -17,9 +17,9 @@ pkgver() {
   local most_recent_timestamp=0
 
   for file in $pkgname/*; do
-    local file_timestamp=$(git log -1 --date=short --pretty=%ct -- "$file")
+    local file_timestamp=$(git log --date=short --pretty=%ct -- $file | head --lines=1)
     ((file_timestamp > most_recent_timestamp)) && \
-      most_recent_timestamp=file_timestamp
+      most_recent_timestamp=$file_timestamp
   done
 
   echo "$most_recent_timestamp"
