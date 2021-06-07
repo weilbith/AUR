@@ -27,29 +27,30 @@ function lockScreen() {
     --ignore-empty-password \
     --indicator \
     --clock \
-    --keylayout=0 \
-    --layoutcolor=${blue_medium}ff \
-    --timestr="%H:%M" \
-    --timecolor=${blue_light}ff \
-    --datestr="%A, %d.%m.%Y" \
-    --datecolor=${blue_light}ff \
+    --color=${blue_medium}ff \
+    --time-str="%H:%M" \
+    --time-color=${blue_light}ff \
+    --date-str="%A, %d.%m.%Y" \
+    --date-color=${blue_light}ff \
+    --keylayout=1 \
+    --layout-color=${blue_light}ff \
     --radius=110 \
     --ring-width=9 \
     --line-uses-ring \
-    --ringcolor="${blue_dark}ff" \
-    --insidecolor=${blue_dark}22 \
-    --separatorcolor=${blue_light}ff \
-    --keyhlcolor=${blue_light}ff \
-    --bshlcolor=${red_dark}ff \
-    --veriftext="Correct...?" \
-    --verifcolor=${green_light}ff \
-    --insidevercolor=${green_light}22 \
-    --ringvercolor=${green_light}ff \
-    --wrongtext="Nope!" \
-    --noinputtext="Empty" \
-    --insidewrongcolor=${red_light}22 \
-    --ringwrongcolor=${red_dark}ff \
-    --wrongcolor=${red_light}ff >>/tmp/testi.log 2>&1
+    --ring-color="${blue_dark}ff" \
+    --inside-color=${blue_dark}22 \
+    --separator-color=${blue_light}ff \
+    --keyhl-color=${blue_light}ff \
+    --bshl-color=${red_dark}ff \
+    --verif-text="Correct...?" \
+    --verif-color=${green_light}ff \
+    --insidever-color=${green_light}22 \
+    --ringver-color=${green_light}ff \
+    --wrong-text="Nope!" \
+    --noinput-text="Empty" \
+    --insidewrong-color=${red_light}22 \
+    --ringwrong-color=${red_dark}ff \
+    --wrong-color=${red_light}ff
 }
 
 setNotificationsPaused true
